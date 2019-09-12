@@ -1,11 +1,12 @@
 # Laravel-Template
 ### Version 6.0
+**IDE:** PHP Storm
+
 **Quick Start Laravel Project**, with essential composer dependenies and authentication built in.
 
 ```
 Make sure the folder is empty.
 ```
-
 
 ## Quick Start
 Run the following commands.
