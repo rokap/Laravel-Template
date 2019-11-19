@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Bind public folder
         $this->app->bind('path.public', function() {
-            return base_path('html');
+            return base_path('public');
         });
 
         // Load IDE Helper in DEV MODE ONLY
@@ -33,6 +33,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 	    Schema::defaultStringLength(191);
-        //
     }
 }

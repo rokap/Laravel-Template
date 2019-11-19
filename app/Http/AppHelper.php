@@ -7,5 +7,5 @@
  */
 function public_path($path = '')
 {
-    return base_path().'/html';
+    return base_path().'/public';
 }
