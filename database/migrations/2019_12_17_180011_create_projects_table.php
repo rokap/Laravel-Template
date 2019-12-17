@@ -20,6 +20,9 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->text('description');
 	        $table->date('due_date');
+	
+	        // Relationships
+	        $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });
     }
 
