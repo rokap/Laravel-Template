@@ -1,80 +1,340 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard</title>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <style>
+        #loader {
+            transition: all 0.3s ease-in-out;
+            opacity: 1;
+            visibility: visible;
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #fff;
+            z-index: 90000;
+        }
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+        #loader.fadeOut {
+            opacity: 0;
+            visibility: hidden;
+        }
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+        .spinner {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: calc(50% - 20px);
+            left: calc(50% - 20px);
+            background-color: #333;
+            border-radius: 100%;
+            -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+            animation: sk-scaleout 1.0s infinite ease-in-out;
+        }
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        @-webkit-keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0)
+            }
+            100% {
+                -webkit-transform: scale(1.0);
+                opacity: 0;
+            }
+        }
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        @keyframes sk-scaleout {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+            100% {
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<body class="app">
+<!-- @TOC -->
+<!-- =================================================== -->
+<!--
+  + @Page Loader
+  + @App Content
+      - #Left Sidebar
+          > $Sidebar Header
+          > $Sidebar Menu
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+      - #Main
+          > $Topbar
+          > $App Screen Content
+-->
 
-                    </ul>
+<!-- @Page Loader -->
+<!-- =================================================== -->
+<div id='loader'>
+    <div class="spinner"></div>
+</div>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+<script>
+    window.addEventListener('load', function load() {
+        const loader = document.getElementById('loader');
+        setTimeout(function () {
+            loader.classList.add('fadeOut');
+        }, 300);
+    });
+</script>
+
+<!-- @App Content -->
+<!-- =================================================== -->
+<div>
+    <!-- #Left Sidebar ==================== -->
+    @include('layouts.sidebar')
+
+    <!-- #Main ============================ -->
+    <div class="page-container">
+        <!-- ### $Topbar ### -->
+        <div class="header navbar">
+            <div class="header-container">
+                <ul class="nav-left">
+                    <li>
+                        <a id='sidebar-toggle' class="sidebar-toggle" href="javascript:void(0);">
+                            <i class="ti-menu"></i>
+                        </a>
+                    </li>
+                    <li class="search-box">
+                        <a class="search-toggle no-pdd-right" href="javascript:void(0);">
+                            <i class="search-icon ti-search pdd-right-10"></i>
+                            <i class="search-icon-close ti-close pdd-right-10"></i>
+                        </a>
+                    </li>
+                    <li class="search-input">
+                        <input class="form-control" type="text" placeholder="Search...">
+                    </li>
+                </ul>
+                <ul class="nav-right">
+                    <li class="notifications dropdown">
+                        <span class="counter bgc-red">3</span>
+                        <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
+                            <i class="ti-bell"></i>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li class="pX-20 pY-15 bdB">
+                                <i class="ti-bell pR-10"></i>
+                                <span class="fsz-sm fw-600 c-grey-900">Notifications</span>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                            <li>
+                                <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
+                                    <li>
+                                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
+                                            <div class="peer mR-15">
+                                                <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/1.jpg" alt="">
+                                            </div>
+                                            <div class="peer peer-greed">
+                            <span>
+                              <span class="fw-500">John Doe</span>
+                              <span class="c-grey-600">liked your <span class="text-dark">post</span>
+                              </span>
+                            </span>
+                                                <p class="m-0">
+                                                    <small class="fsz-xs">5 mins ago</small>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
+                                            <div class="peer mR-15">
+                                                <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/2.jpg" alt="">
+                                            </div>
+                                            <div class="peer peer-greed">
+                            <span>
+                              <span class="fw-500">Moo Doe</span>
+                              <span class="c-grey-600">liked your <span class="text-dark">cover image</span>
+                              </span>
+                            </span>
+                                                <p class="m-0">
+                                                    <small class="fsz-xs">7 mins ago</small>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
+                                            <div class="peer mR-15">
+                                                <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/3.jpg" alt="">
+                                            </div>
+                                            <div class="peer peer-greed">
+                            <span>
+                              <span class="fw-500">Lee Doe</span>
+                              <span class="c-grey-600">commented on your <span class="text-dark">video</span>
+                              </span>
+                            </span>
+                                                <p class="m-0">
+                                                    <small class="fsz-xs">10 mins ago</small>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="pX-20 pY-15 ta-c bdT">
+                    <span>
+                      <a href="" class="c-grey-600 cH-blue fsz-sm td-n">View All Notifications <i class="ti-angle-right fsz-xs mL-10"></i></a>
+                    </span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="notifications dropdown">
+                        <span class="counter bgc-blue">3</span>
+                        <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
+                            <i class="ti-email"></i>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li class="pX-20 pY-15 bdB">
+                                <i class="ti-email pR-10"></i>
+                                <span class="fsz-sm fw-600 c-grey-900">Emails</span>
+                            </li>
+                            <li>
+                                <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
+                                    <li>
+                                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
+                                            <div class="peer mR-15">
+                                                <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/1.jpg" alt="">
+                                            </div>
+                                            <div class="peer peer-greed">
+                                                <div>
+                                                    <div class="peers jc-sb fxw-nw mB-5">
+                                                        <div class="peer">
+                                                            <p class="fw-500 mB-0">John Doe</p>
+                                                        </div>
+                                                        <div class="peer">
+                                                            <small class="fsz-xs">5 mins ago</small>
+                                                        </div>
+                                                    </div>
+                                                    <span class="c-grey-600 fsz-sm">
+                                Want to create your own customized data generator for your app...
+                              </span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
+                                            <div class="peer mR-15">
+                                                <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/2.jpg" alt="">
+                                            </div>
+                                            <div class="peer peer-greed">
+                                                <div>
+                                                    <div class="peers jc-sb fxw-nw mB-5">
+                                                        <div class="peer">
+                                                            <p class="fw-500 mB-0">Moo Doe</p>
+                                                        </div>
+                                                        <div class="peer">
+                                                            <small class="fsz-xs">15 mins ago</small>
+                                                        </div>
+                                                    </div>
+                                                    <span class="c-grey-600 fsz-sm">
+                                Want to create your own customized data generator for your app...
+                              </span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
+                                            <div class="peer mR-15">
+                                                <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/3.jpg" alt="">
+                                            </div>
+                                            <div class="peer peer-greed">
+                                                <div>
+                                                    <div class="peers jc-sb fxw-nw mB-5">
+                                                        <div class="peer">
+                                                            <p class="fw-500 mB-0">Lee Doe</p>
+                                                        </div>
+                                                        <div class="peer">
+                                                            <small class="fsz-xs">25 mins ago</small>
+                                                        </div>
+                                                    </div>
+                                                    <span class="c-grey-600 fsz-sm">
+                                Want to create your own customized data generator for your app...
+                              </span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="pX-20 pY-15 ta-c bdT">
+                    <span>
+                      <a href="email.html" class="c-grey-600 cH-blue fsz-sm td-n">View All Email <i class="fs-xs ti-angle-right mL-10"></i></a>
+                    </span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
+                            <div class="peer mR-10">
+                                <img class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt="">
+                            </div>
+                            <div class="peer">
+                                <span class="fsz-sm c-grey-900">John Doe</span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu fsz-sm">
+                            <li>
+                                <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                    <i class="ti-settings mR-10"></i>
+                                    <span>Setting</span>
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
                             </li>
-                        @endguest
-                    </ul>
-                </div>
+                            <li>
+                                <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                    <i class="ti-user mR-10"></i>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="email.html" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                    <i class="ti-email mR-10"></i>
+                                    <span>Messages</span>
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                    <i class="ti-power-off mR-10"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
 
-        <main class="py-4">
-            @yield('content')
+        <!-- ### $App Screen Content ### -->
+        <main class='main-content bgc-grey-100'>
+            <div id='mainContent'>
+                @yield("content")
+            </div>
         </main>
+
+        <!-- ### $App Screen Footer ### -->
+        <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
+            <span>Copyright © 2019 Designed by <a href="https://colorlib.com" target='_blank' title="Colorlib">Colorlib</a>. All rights reserved.</span>
+        </footer>
     </div>
+</div>
+
+<script src="{{asset('js/app.js')}}"></script>
+@yield("javascript")
 </body>
 </html>
+
+

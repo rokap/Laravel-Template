@@ -21,8 +21,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AccountTransaction whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AccountTransaction whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AccountTransaction whereUpdatedAt($value)
+ * @property int|null $item_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\AccountTransaction whereItemId($value)
  */
 class AccountTransaction extends Model
 {
-    //
+    protected $fillable = [
+    	'account_id',
+    	'amount',
+    ];
 }

@@ -1,0 +1,22 @@
+@import 'spec/settings/index';
+@import 'spec/tools/index';
+@import "~bootstrap/scss/bootstrap";
+@import 'spec/index';
+@import 'vendor/index';
+
+.fit{
+  width: 1%;
+  white-space: nowrap;
+}
+.dataTables_wrapper
+{
+  overflow: visible;
+}
+.modal-full {
+  min-width: 100%;
+  margin: 0;
+}
+
+.modal-full .modal-content {
+  min-height: 100vh;
+}

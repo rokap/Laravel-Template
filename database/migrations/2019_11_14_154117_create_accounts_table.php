@@ -21,7 +21,7 @@ class CreateAccountsTable extends Migration
 	        $table->timestamps();
 	        
 	        // Relationships
-	        $table->foreign('type')->references('id')->on('account_types')->onDelete('cascade');
+	        $table->foreign('type_id')->references('id')->on('account_types')->onDelete('cascade');
         });
     }
 
