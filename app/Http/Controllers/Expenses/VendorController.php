@@ -15,7 +15,7 @@
 		 */
 		public function index()
 		{
-			//
+			return view('pages.expenses.vendors.index');
 		}
 		
 		/**

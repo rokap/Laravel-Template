@@ -16,7 +16,7 @@
 		 */
 		public function index()
 		{
-			//
+			return view('pages.inventory.category.index');
 		}
 		
 		/**

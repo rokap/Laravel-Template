@@ -22,7 +22,7 @@
 			$showInactive = (isset($request['showInactive'])) ? true : false;
 			$itemCategories = ItemCategory::where('parent_category_id', null)->orderBy('order', 'asc')->paginate(100);
 			
-			return view('inventory.item.index', compact('itemCategories', 'showInactive'));
+			return view('pages.inventory.item.index', compact('itemCategories', 'showInactive'));
 		}
 		
 		/**
@@ -37,7 +37,7 @@
 			$expenseAccounts = Account::orderBy('id')->whereTypeId(2)->get();
 			$itemTypes = ItemType::orderBy('id')->get();
 			$itemCategories = ItemCategory::orderBy('id')->get();
-			return view('inventory.item.create', compact('itemTypes', 'itemCategories', 'incomeAccounts', 'assetAccounts', 'expenseAccounts'));
+			return view('pages.inventory.item.create', compact('itemTypes', 'itemCategories', 'incomeAccounts', 'assetAccounts', 'expenseAccounts'));
 		}
 		
 		/**
