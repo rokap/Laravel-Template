@@ -19,7 +19,7 @@
 	});
 	
 	Route::group(['namespace' => 'Expenses', 'prefix' => 'expenses', 'as' => 'expenses.', 'middleware' => []], function () {
-		Route::resource('purchases', 'PurchaseOrderController');
+		Route::resource('purchases', 'PurchaseController');
 		Route::resource('bills', 'BillController');
 		Route::resource('checks', 'CheckController');
 		Route::resource('vendors', 'VendorController');

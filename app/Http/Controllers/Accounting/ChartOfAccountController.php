@@ -26,7 +26,7 @@
 			else
 				$accounts = Account::orderBy('number')->whereStatus(true)->paginate();
 			
-			return view('account.index', compact('accounts', 'showInactive'));
+			return view('pages.accounting.chartofaccounts.index', compact('accounts', 'showInactive'));
 		}
 		
 		/**
@@ -37,7 +37,7 @@
 		public function create()
 		{
 			$accountTypes = AccountType::orderBy('id')->get();
-			return view('account.create', compact('accountTypes'));
+			return view('pages.accounting.chartofaccounts.create', compact('accountTypes'));
 		}
 		
 		/**

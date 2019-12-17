@@ -26,6 +26,16 @@ class ProjectController extends Controller
     public function create()
     {
         //
+	    
+	    /**
+	     * Things to Track
+	     *
+	     * Project Name
+	     * Description ( Optional )
+	     * For Customer
+	     * Completion Date
+	     *
+	     */
     }
 
     /**

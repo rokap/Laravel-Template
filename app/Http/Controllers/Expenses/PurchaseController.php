@@ -6,7 +6,7 @@
 	use App\Models\PurchaseOrder;
 	use Illuminate\Http\Request;
 	
-	class PurchaseOrderController extends Controller
+	class PurchaseController extends Controller
 	{
 		/**
 		 * Display a listing of the resource.

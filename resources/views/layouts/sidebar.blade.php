@@ -29,7 +29,7 @@
 
         <!-- ### $Sidebar Menu ### -->
         <ul class="sidebar-menu scrollable pos-r">
-            <li class="nav-item mT-30 actived">
+            <li class="nav-item mT-30 ">
                 <a class="sidebar-link " href="{{route('dashboard')}}">
                         <span class="icon-holder">
                           <i class="ti-home"></i>
@@ -52,11 +52,12 @@
                     <span class="arrow"><i class="ti-angle-right"></i></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class='sidebar-link' href="{{route('sales.estimates.index')}}">Estimates</a></li>
-                    <li><a class='sidebar-link' href="{{route('sales.invoices.index')}}">Invoices</a></li>
-                    <li><a class='sidebar-link' href="{{route('sales.payments.index')}}">Payments</a></li>
-                    <li><a class='sidebar-link' href="{{route('sales.deposits.index')}}">Deposits</a></li>
-                    <li><a class='sidebar-link' href="{{route('sales.customers.index')}}">Customers</a></li>
+
+                    <li><a class='sidebar-link {{(Route::current()->getName() == 'sales.estimates.index')?'actived':null}}' href="{{route('sales.estimates.index')}}">Estimates</a></li>
+                    <li><a class='sidebar-link {{(Route::current()->getName() == 'sales.invoices.index')?'actived':null}}' href="{{route('sales.invoices.index')}}">Invoices</a></li>
+                    <li><a class='sidebar-link {{(Route::current()->getName() == 'sales.payments.index')?'actived':null}}' href="{{route('sales.payments.index')}}">Payments</a></li>
+                    <li><a class='sidebar-link {{(Route::current()->getName() == 'sales.deposits.index')?'actived':null}}' href="{{route('sales.deposits.index')}}">Deposits</a></li>
+                    <li><a class='sidebar-link {{(Route::current()->getName() == 'sales.customers.index')?'actived':null}}' href="{{route('sales.customers.index')}}">Customers</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
