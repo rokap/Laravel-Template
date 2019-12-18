@@ -20,3 +20,54 @@
 .modal-full .modal-content {
   min-height: 100vh;
 }
+.sidebar-menu li.dropdown.open > a {
+  color: $default-success;
+}
+.sidebar-menu li.dropdown.open > a .icon-holder {
+  color: $default-success;
+}
+.sidebar-menu li a:hover .icon-holder, .sidebar-menu li a:focus .icon-holder {
+  color: $default-success;
+}
+.sidebar-menu li a:hover, .sidebar-menu li a:focus {
+  color: $default-success;
+  text-decoration: none;
+}
+.sidebar-menu .sidebar-link.actived {
+  background: $default-success;
+  color: $default-white;
+}
+.sidebar-menu .sidebar-link.actived::before {
+  background: $default-success;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 41px;
+  left: -9px;
+  position: absolute;
+  top: 0;
+  width: 18px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.sidebar-menu > li.dropdown ul.dropdown-menu > li > a:hover {
+  background: $grey-500;
+  color:$default-white;
+}
+.sidebar-menu .sidebar-link::before {
+  background: $default-white;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 41px;
+  left: -9px;
+  position: absolute;
+  top: 0;
+  width: 18px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.sidebar-menu > li.dropdown ul.dropdown-menu > li > a:hover::before {
+  background: $grey-500;
+  color:$default-white;
+}
