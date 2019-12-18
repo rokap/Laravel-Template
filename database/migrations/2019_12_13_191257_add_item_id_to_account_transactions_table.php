@@ -28,6 +28,7 @@ class AddItemIdToAccountTransactionsTable extends Migration
     public function down()
     {
         Schema::table('account_transactions', function (Blueprint $table) {
+            $table->dropForeign(['item_id']);
             $table->dropColumn(['item_id']);
         });
     }
