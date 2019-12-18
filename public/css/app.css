@@ -76013,7 +76013,7 @@ footer {
 @font-face {
   font-family: "themify";
   src: url(/fonts/themify.eot?2c454669bdf3aebf32a1bd8ac1e0d2d6);
-  src: url(/fonts/themify.eot?2c454669bdf3aebf32a1bd8ac1e0d2d6) format("embedded-opentype"), url(/fonts/themify.woff?a1ecc3b826d01251edddf29c3e4e1e97) format("woff"), url(/fonts/themify.ttf?e23a7dcaefbde4e74e263247aa42ecd7) format("truetype"), url(/fonts/themify.svg?9c8e96ecc7fa01e6ebcd196495ed2db5) format("svg");
+  src: url(/fonts/themify.eot?2c454669bdf3aebf32a1bd8ac1e0d2d6) format("embedded-opentype"), url(/fonts/themify.woff?a1ecc3b826d01251edddf29c3e4e1e97) format("woff"), url(/fonts/themify.ttf?e23a7dcaefbde4e74e263247aa42ecd7) format("truetype"), url(/fonts/themify.svg?cba68f986e60df8c74f4a53c3e39595c) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -77451,7 +77451,7 @@ footer {
 @font-face {
   font-family: "FontAwesome";
   src: url(/fonts/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713);
-  src: url(/fonts/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713) format("embedded-opentype"), url(/fonts/fontawesome-webfont.woff2?af7ae505a9eed503f8b8e6982036873e) format("woff2"), url(/fonts/fontawesome-webfont.woff?fee66e712a8a08eef5805a46892932ad) format("woff"), url(/fonts/fontawesome-webfont.ttf?b06871f281fee6b241d60582ae9369b9) format("truetype"), url(/fonts/fontawesome-webfont.svg?912ec66d7572ff821749319396470bde) format("svg");
+  src: url(/fonts/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713) format("embedded-opentype"), url(/fonts/fontawesome-webfont.woff2?af7ae505a9eed503f8b8e6982036873e) format("woff2"), url(/fonts/fontawesome-webfont.woff?fee66e712a8a08eef5805a46892932ad) format("woff"), url(/fonts/fontawesome-webfont.ttf?b06871f281fee6b241d60582ae9369b9) format("truetype"), url(/fonts/fontawesome-webfont.svg?acf3dcb7ff752b5296ca23ba2c7c2606) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -80939,5 +80939,67 @@ table.dataTable.no-footer {
 
 .modal-full .modal-content {
   min-height: 100vh;
+}
+
+.sidebar-menu li.dropdown.open > a {
+  color: #37c936;
+}
+
+.sidebar-menu li.dropdown.open > a .icon-holder {
+  color: #37c936;
+}
+
+.sidebar-menu li a:hover .icon-holder,
+.sidebar-menu li a:focus .icon-holder {
+  color: #37c936;
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li a:focus {
+  color: #37c936;
+  text-decoration: none;
+}
+
+.sidebar-menu .sidebar-link.actived {
+  background: #37c936;
+  color: #fff;
+}
+
+.sidebar-menu .sidebar-link.actived::before {
+  background: #37c936;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 41px;
+  left: -9px;
+  position: absolute;
+  top: 0;
+  width: 18px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu > li.dropdown ul.dropdown-menu > li > a:hover {
+  background: #b9c2d0;
+  color: #fff;
+}
+
+.sidebar-menu .sidebar-link::before {
+  background: #fff;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 41px;
+  left: -9px;
+  position: absolute;
+  top: 0;
+  width: 18px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu > li.dropdown ul.dropdown-menu > li > a:hover::before {
+  background: #b9c2d0;
+  color: #fff;
 }
 
