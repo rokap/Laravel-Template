@@ -93676,16 +93676,7 @@ __webpack_require__.r(__webpack_exports__);
         $this.parent().addClass('open');
       });
     }
-  }); // Sidebar Activity Class
-
-  var sidebarLinks = jquery__WEBPACK_IMPORTED_MODULE_0__('.sidebar').find('.sidebar-link');
-  sidebarLinks.each(function (index, el) {
-    jquery__WEBPACK_IMPORTED_MODULE_0__(el).removeClass('active');
-  }).filter(function () {
-    var href = jquery__WEBPACK_IMPORTED_MODULE_0__(this).attr('href');
-    var pattern = href[0] === '/' ? href.substr(1) : href;
-    return pattern === window.location.pathname.substr(1);
-  }).addClass('active'); // ٍSidebar Toggle
+  }); // ٍSidebar Toggle
 
   jquery__WEBPACK_IMPORTED_MODULE_0__('.sidebar-toggle').on('click', function (e) {
     jquery__WEBPACK_IMPORTED_MODULE_0__('.app').toggleClass('is-collapsed');

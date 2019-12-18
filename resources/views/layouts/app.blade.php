@@ -77,6 +77,7 @@
     window.addEventListener('load', function load() {
         setTimeout(function () {
             $('#loader').fadeOut(500);
+            window.dispatchEvent(window.EVENT);
         }, 100);
     });
 </script>
@@ -311,7 +312,6 @@
             </div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0" style="border-radius: 0">
-                    <li class="breadcrumb-item" aria-current="page">Home</li>
                     @foreach(Request::segments() as $segment)
                         <li class="breadcrumb-item" aria-current="page">{{ucwords($segment)}}</li>
                     @endforeach
