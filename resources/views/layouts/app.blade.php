@@ -8,7 +8,6 @@
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <style>
         #loader {
-            transition: all 0.3s ease-in-out;
             opacity: 1;
             visibility: visible;
             position: fixed;
@@ -16,11 +15,6 @@
             width: 100%;
             background: #fff;
             z-index: 90000;
-        }
-
-        #loader.fadeOut {
-            opacity: 0;
-            visibility: hidden;
         }
 
         .spinner {
@@ -81,10 +75,9 @@
 
 <script>
     window.addEventListener('load', function load() {
-        const loader = document.getElementById('loader');
         setTimeout(function () {
-            loader.classList.add('fadeOut');
-        }, 300);
+            $('#loader').fadeOut(500);
+        }, 100);
     });
 </script>
 
@@ -92,9 +85,9 @@
 <!-- =================================================== -->
 <div>
     <!-- #Left Sidebar ==================== -->
-    @include('layouts.sidebar')
+@include('layouts.sidebar')
 
-    <!-- #Main ============================ -->
+<!-- #Main ============================ -->
     <div class="page-container">
         <!-- ### $Topbar ### -->
         <div class="header navbar">
@@ -316,11 +309,19 @@
                     </li>
                 </ul>
             </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0" style="border-radius: 0">
+                    <li class="breadcrumb-item" aria-current="page">Home</li>
+                    @foreach(Request::segments() as $segment)
+                        <li class="breadcrumb-item" aria-current="page">{{ucwords($segment)}}</li>
+                    @endforeach
+                </ol>
+            </nav>
         </div>
 
         <!-- ### $App Screen Content ### -->
         <main class='main-content bgc-grey-100'>
-            <div id='mainContent'>
+            <div id='mainContent' class=" pT-50">
                 @yield("content")
             </div>
         </main>

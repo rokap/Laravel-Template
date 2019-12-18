@@ -55,7 +55,6 @@ export default (function () {
       return pattern === (window.location.pathname).substr(1);
     })
     .addClass('active');
-
   // ٍSidebar Toggle
   $('.sidebar-toggle').on('click', e => {
     $('.app').toggleClass('is-collapsed');

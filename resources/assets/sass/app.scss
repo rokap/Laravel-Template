@@ -20,6 +20,11 @@
 .modal-full .modal-content {
   min-height: 100vh;
 }
+.sidebar-menu li.dropdown.open > .dropdown-menu {
+  border-top: 1px solid $grey-300;
+  border-bottom: 1px solid $grey-300;
+  padding-top: 8px;
+}
 .sidebar-menu li.dropdown.open > a {
   color: $default-success;
 }

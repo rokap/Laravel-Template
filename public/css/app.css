@@ -12411,18 +12411,6 @@ hr {
   background-color: #5cb85c;
 }
 
-#loader {
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  opacity: 1;
-  display: default;
-}
-
-#loader.fadeOut {
-  opacity: 0;
-  display: none;
-}
-
 .spinner {
   width: 40px;
   height: 40px;
@@ -80939,6 +80927,12 @@ table.dataTable.no-footer {
 
 .modal-full .modal-content {
   min-height: 100vh;
+}
+
+.sidebar-menu li.dropdown.open > .dropdown-menu {
+  border-top: 1px solid #e6eaf0;
+  border-bottom: 1px solid #e6eaf0;
+  padding-top: 8px;
 }
 
 .sidebar-menu li.dropdown.open > a {
