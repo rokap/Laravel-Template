@@ -17,7 +17,7 @@
         <h3 class='mB-10 fsz-lg c-grey-900 tt-c'>Oops Page Not Found</h3>
         <p class='mB-30 fsz-def c-grey-700'>The page you are looking for does not exist or has been moved.</p>
         <div>
-            <a href="{{route('system.dashboard')}}" type='primary' class='btn btn-primary'>Go to Dashboard</a>
+            <a href="{{route('dashboard')}}" type='primary' class='btn btn-primary'>Go to Dashboard</a>
         </div>
     </div>
 </div>

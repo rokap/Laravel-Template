@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Product / Service List</div>
                     <div class="card-body border-bottom text-right">
-                        @if($showInactive)
+                        @if($showInactive ?? '')
                             <a href="{{route('inventory.categories.index')}}" class="btn btn-sm btn-secondary"><i class="fa fa-eye-slash"></i> Hide Inactive</a>
                         @else
                             <a href="{{route('inventory.categories.index','showInactive')}}" class="btn btn-sm btn-secondary"><i class="fa fa-eye"></i> Show Inactive</a>
@@ -40,7 +40,7 @@
                                         <b>{{$category->name}}</b>
                                     </td>
                                 </tr>
-                                @foreach(($showInactive)?$category->items:$category->items()->where('active',true)->get() as $item)
+                                @foreach(($showInactive ?? '')?$category->items:$category->items()->where('active',true)->get() as $item)
                                     <tr>
                                         <td>
                                             @if(!$item->active)<i class="fa fa-eye-slash"></i>@endif
@@ -78,7 +78,7 @@
                                             <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$category->name}} / {{$sub_category->name}}</b>
                                         </td>
                                     </tr>
-                                    @foreach(($showInactive)?$sub_category->items:$sub_category->items()->where('active',true)->get() as $item)
+                                    @foreach(($showInactive ?? '')?$sub_category->items:$sub_category->items()->where('active',true)->get() as $item)
                                         <tr>
                                             <td>
                                                 @if(!$item->active)
