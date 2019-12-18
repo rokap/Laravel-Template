@@ -11,7 +11,7 @@ Make sure the folder is empty.
 ## Quick Start
 Run the following commands.
 
-1. git clone https://github.com/rokap/Laravel-Template .
+1. git clone --single-branch --branch Accounting https://github.com/rokap/Laravel-Template .
 2. composer install
 3. php artisan migrate
 4. npm install (optional)
