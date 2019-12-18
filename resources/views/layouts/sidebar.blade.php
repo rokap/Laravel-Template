@@ -29,115 +29,31 @@
 
         <!-- ### $Sidebar Menu ### -->
         <ul class="sidebar-menu scrollable pos-r">
-            <li class="nav-item mT-30 ">
-                <a class="sidebar-link " href="{{route('dashboard')}}">
+            @foreach($mainMenu as $key => $menuItem)
+                @if(count($menuItem['sub_menu']))
+                    <li class="nav-item dropdown{{($menuItem['active'])?' open':null}}">
+                        <a class="dropdown-toggle" href="{{$menuItem['href']}}">
+                            <span class="icon-holder"><i class="{{$menuItem['icon']}}"></i></span>
+                            <span class="title"><b>{{$menuItem['label']}}</b></span>
+                            <span class="arrow"><i class="ti-angle-right"></i></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach($menuItem['sub_menu'] as $subMenuItem )
+                                <li><a class='sidebar-link{{($subMenuItem['active'])?' actived':null}}' href="{{$subMenuItem['href']}}">{{$subMenuItem['label']}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @else
+                    <li class="nav-item dropdown{{($key=="Dashboard")?' mT-30':null}}{{($menuItem['active'])?' open':null}}">
+                        <a class="sidebar-link" href="{{$menuItem['href']}}">
                         <span class="icon-holder">
-                          <i class="ti-home"></i>
+                          <i class="{{$menuItem['icon']}}"></i>
                         </span>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="sidebar-link" href="{{route('projects.index')}}">
-                        <span class="icon-holder">
-                          <i class="fa fa-gears"></i>
-                        </span>
-                    <span class="title">Projects</span>
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder"><i class="ti-shopping-cart"></i></span>
-                    <span class="title">Sales</span>
-                    <span class="arrow"><i class="ti-angle-right"></i></span>
-                </a>
-                <ul class="dropdown-menu">
-
-                    <li><a class='sidebar-link {{(Route::current()->getName() == 'sales.estimates.index')?'actived':null}}' href="{{route('sales.estimates.index')}}">Estimates</a></li>
-                    <li><a class='sidebar-link {{(Route::current()->getName() == 'sales.invoices.index')?'actived':null}}' href="{{route('sales.invoices.index')}}">Invoices</a></li>
-                    <li><a class='sidebar-link {{(Route::current()->getName() == 'sales.payments.index')?'actived':null}}' href="{{route('sales.payments.index')}}">Payments</a></li>
-                    <li><a class='sidebar-link {{(Route::current()->getName() == 'sales.deposits.index')?'actived':null}}' href="{{route('sales.deposits.index')}}">Deposits</a></li>
-                    <li><a class='sidebar-link {{(Route::current()->getName() == 'sales.customers.index')?'actived':null}}' href="{{route('sales.customers.index')}}">Customers</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder"><i class="ti-money"></i></span>
-                    <span class="title">Expenses</span>
-                    <span class="arrow"><i class="ti-angle-right"></i></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class='sidebar-link' href="{{route('expenses.purchases.index')}}">Purchase Orders</a></li>
-                    <li><a class='sidebar-link' href="{{route('expenses.bills.index')}}">Bills</a></li>
-                    <li><a class='sidebar-link' href="{{route('expenses.checks.index')}}">Checks</a></li>
-                    <li><a class='sidebar-link' href="{{route('expenses.vendors.index')}}">Vendors</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder"><i class="ti-package"></i></span>
-                    <span class="title">Inventory</span>
-                    <span class="arrow"><i class="ti-angle-right"></i></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class='sidebar-link' href="{{route('inventory.categories.index')}}">Categories</a></li>
-                    <li><a class='sidebar-link' href="{{route('inventory.items.index')}}">Items</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder"><i class="ti-user"></i></span>
-                    <span class="title">Workers</span>
-                    <span class="arrow"><i class="ti-angle-right"></i></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class='sidebar-link' href="{{route('workers.payroll.index')}}">Payroll</a></li>
-                    <li><a class='sidebar-link' href="{{route('workers.employees.index')}}">Employees</a></li>
-                    <li><a class='sidebar-link' href="{{route('workers.contractors.index')}}">Contractors</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder"><i class="fa fa-bank"></i></span>
-                    <span class="title">Banking</span>
-                    <span class="arrow"><i class="ti-angle-right"></i></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class='sidebar-link' href="{{route('banking.feeds.index')}}">Feeds</a></li>
-                    <li><a class='sidebar-link' href="{{route('banking.rules.index')}}">Rules</a></li>
-                    <li><a class='sidebar-link' href="{{route('banking.receipts.index')}}">Receipts</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder"><i class="fa fa-balance-scale"></i></span>
-                    <span class="title">Taxes</span>
-                    <span class="arrow"><i class="ti-angle-right"></i></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class='sidebar-link' href="{{route('taxes.sales.index')}}">Sales Tax</a></li>
-                    <li><a class='sidebar-link' href="{{route('taxes.payroll.index')}}">Payroll Tax</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder"><i class="ti-archive"></i></span>
-                    <span class="title">Accounting</span>
-                    <span class="arrow"><i class="ti-angle-right"></i></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class='sidebar-link' href="{{route('accounting.chartOfAccounts.index')}}">Chart of Accounts</a></li>
-                    <li><a class='sidebar-link' href="{{route('accounting.reconcile.index')}}">Reconcile</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a class="sidebar-link" href="{{route('reports.index')}}">
-                        <span class="icon-holder">
-                          <i class="ti-pie-chart"></i>
-                        </span>
-                    <span class="title">Reports</span>
-                </a>
-            </li>
+                            <span class="title"><b>{{$menuItem['label']}}</b></span>
+                        </a>
+                    </li>
+                @endif
+            @endforeach
         </ul>
     </div>
 </div>
