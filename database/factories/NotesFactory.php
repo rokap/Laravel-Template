@@ -13,6 +13,6 @@ $factory->define(Notes::class, function (Faker $faker) {
         'status_id'     => factory(App\Status::class)->create()->id,
         'note_type'     => $faker->word(),
         'applies_to_date' => $faker->date(),
-        'users_id'      => factory(App\User::class)->create()->id
+        'users_id'      => factory(App\Models\User::class)->create()->id
     ];
 });

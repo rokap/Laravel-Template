@@ -15,11 +15,11 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
 	        $table->unsignedBigInteger('customer_id');
             $table->string('name');
             $table->text('description');
 	        $table->date('due_date');
+	        $table->timestamps();
 	
 	        // Relationships
 	        $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');

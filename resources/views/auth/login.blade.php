@@ -1,83 +1,71 @@
 @extends('layouts.auth')
 
+@section('title','Login')
+
 @section('auth')
-    <div class="col-md-8">
-        <div class="card-group">
-            <div class="card">
-                <div class="card-body p-5">
-                    <div class="text-center d-lg-none">
-                        <img src="svg/modulr.svg" class="mb-5" width="150" alt="Modulr Logo">
-                    </div>
-                    <h1>{{ __('Login') }}</h1>
-                    <p class="text-muted">Sign In to your account</p>
+    <div class="peers ai-s fxw-nw h-100vh">
+        <div class="peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("//picsum.photos/2000")'>
+            <div class="pos-a centerXY">
+                <div class="bdrs-50p pos-r" style='width: 900px; height: 500px;'>
+                    <h1 class="pos-a centerXY row fw-300 c-grey-900 mB-20 mb-0 align-items-center text-center">
+                        <img src="{{asset('images/logo.png')}}"><span class="text-white" style=" text-shadow: 2px 2px 8px #000;">Rokap Inc | <span
+                                    class="small">Accounting</span></span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style='min-width: 320px;'>
+            <h4 class="row fw-300 c-grey-900 mB-20 mb-0 align-items-center">
+                <img src="{{asset('images/logo.png')}}"><span>Rokap Inc</span>
+            </h4>
+            <hr>
+            <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="form-group">
+                    <label for="email" class="text-normal text-dark">{{ __('E-Mail Address') }}</label>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">@</span>
-                            </div>
-                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('Email Address') }}" required autofocus>
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-normal text-dark">{{ __('Password') }}</label>
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                            @if ($errors->has('email'))
-                                <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                            @endif
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <i class="icon-lock"></i>
-                            </span>
-                            </div>
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" required>
-
-                            @if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                            @endif
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <div class="peers ai-c jc-sb fxw-nw">
+                        <div class="peer">
+                            <div class="checkbox checkbox-circle checkbox-info peers ai-c">
+                                <input class="peer" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <label for="remember" class=" peers peer-greed js-sb ai-c">
+                                    <span class="peer peer-greed">Remember Me</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary px4">
-                                    {{ __('Login') }}
-                                </button>
-                            </div>
-                            <div class="col-8 text-right">
-                                <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+                        <div class="peer">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Login') }}
+                            </button>
+
+                            @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
-                            </div>
+                            @endif
                         </div>
-                    </form>
-                </div>
-                <div class="card-footer p-4 d-lg-none">
-                    <div class="col-12 text-right">
-                        <a class="btn btn-outline-primary btn-block mt-3" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </div>
                 </div>
-            </div>
-            <div class="card text-white bg-primary py-5 d-md-down-none">
-                <div class="card-body text-center">
-                    <div>
-                        <img src="svg/modulr.svg" class="mb-5" width="150" alt="Modulr Logo">
-                        <h2>{{ __('Sign up') }}</h2>
-                        <p>If you don't have account create one.</p>
-                        <a class="btn btn-primary active mt-2" href="{{ route('register') }}">{{ __('Register Now!') }}</a>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection

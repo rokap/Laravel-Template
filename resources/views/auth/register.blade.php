@@ -1,74 +1,68 @@
 @extends('layouts.auth')
+@section('title','Registration')
 
 @section('auth')
-    <div class="col-md-6">
-        <div class="card mx-4">
-            <div class="card-body p-4">
-                <h1>{{ __('Register') }}</h1>
-                <p class="text-muted">Create your account</p>
-
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="icon-user"></i>
-                        </span>
-                        </div>
-                        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}"  placeholder="{{ __('Name') }}" required autofocus>
-
-                        @if ($errors->has('name'))
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">@</span>
-                        </div>
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('Email Address') }}" required>
-
-                        @if ($errors->has('email'))
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="icon-lock"></i>
-                        </span>
-                        </div>
-                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"  placeholder="{{ __('Password') }}" name="password" required>
-
-                        @if ($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    <div class="input-group mb-4">
-                        <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="icon-lock"></i>
-                        </span>
-                        </div>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required>
-                    </div>
-                    <button type="submit" class="btn btn-block btn-success btn-primary">
-                        {{ __('Create Account') }}
-                    </button>
-                </form>
-            </div>
-            <div class="card-footer p-4">
-                <div class="row">
-                    <div class="col-12">
-                        <a class="btn btn-outline-primary btn-block" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </div>
+    <div class="peers ai-s fxw-nw h-100vh">
+        <div class="peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("//picsum.photos/2000")'>
+            <div class="pos-a centerXY">
+                <div class="bdrs-50p pos-r" style='width: 900px; height: 500px;'>
+                    <h1 class="pos-a centerXY row fw-300 c-grey-900 mB-20 mb-0 align-items-center text-center">
+                        <img src="{{asset('images/logo.png')}}"><span class="text-white" style=" text-shadow: 2px 2px 8px #000;">Rokap Inc | <span
+                                    class="small">Accounting</span></span>
+                    </h1>
                 </div>
             </div>
+        </div>
+        <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style='min-width: 320px;'>
+            <h4 class="row fw-300 c-grey-900 mB-20 mb-0 align-items-center">
+                <img src="{{asset('images/logo.png')}}"><span>Rokap Inc</span>
+            </h4>
+            <hr>
+            <h4 class="fw-300 c-grey-900 mB-40">Registration</h4>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+                <div class="form-group">
+                    <label for="name" class="text-normal text-dark">{{ __('Name') }}</label>
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name"
+                           autofocus>
+
+                    @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="email" class="text-normal text-dark">{{ __('E-Mail Address') }}</label>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required
+                           autocomplete="email">
+
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-normal text-dark">{{ __('Password') }}</label>
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="password-confirm" class="text-normal text-dark">{{ __('Confirm Password') }}</label>
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        {{ __('Register') }}
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

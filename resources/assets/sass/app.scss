@@ -3,7 +3,11 @@
 @import "~bootstrap/scss/bootstrap";
 @import 'spec/index';
 @import 'vendor/index';
+@import '~bootstrap-select/sass/bootstrap-select';
 
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
 .fit{
   width: 1%;
   white-space: nowrap;
@@ -11,14 +15,17 @@
 .dataTables_wrapper
 {
   overflow: visible;
+  padding-bottom: 25px;
 }
 .modal-full {
-  min-width: 100%;
-  margin: 0;
+  min-width: 900px;
+  margin: auto;
+  border-radius:0px;
 }
 
 .modal-full .modal-content {
   min-height: 100vh;
+  border-radius:0px;
 }
 .sidebar-menu li.dropdown.open > .dropdown-menu {
   border-top: 1px solid $grey-300;
@@ -75,4 +82,7 @@
 .sidebar-menu > li.dropdown ul.dropdown-menu > li > a:hover::before {
   background: $grey-500;
   color:$default-white;
+}
+.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+  color: $gray-600;
 }

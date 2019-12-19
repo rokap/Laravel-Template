@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\User;
+use \App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -27,7 +27,7 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(\App\User::class, 'admin', function (Faker $faker) {
+$factory->state(User::class, 'admin', function (Faker $faker) {
     return [
         'menuroles' => 'user,admin',
     ];
